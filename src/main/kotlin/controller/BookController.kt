@@ -12,7 +12,7 @@ object BookController {
         get("/book/find-test") { _, _ -> BookRepository.testBook().isbn }
         get("/book/json-test", routeJsonTest(), JsonTransformer())
         get("/book/json-list-test", routeJsonListTest(), JsonTransformer())
-        get("/book/cache-test", routeCacheTest(), JsonTransformer())
+        get("/book/cache-test/:isbn", routeCacheTest(), JsonTransformer())
     }
 
     private fun routeJsonTest() = Route { _, _ ->
@@ -23,7 +23,7 @@ object BookController {
         BookRepository.testBooks()
     }
 
-    private fun routeCacheTest() = Route { _, _ ->
-        BookService.testCacheBook("1234567891")
+    private fun routeCacheTest() = Route { req, _ ->
+        BookService.testCacheBook(req.params("isbn"))
     }
 }
