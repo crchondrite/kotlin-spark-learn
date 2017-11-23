@@ -1,22 +1,25 @@
 package repository
 
-import com.mongodb.MongoClient
-import com.mongodb.MongoClientOptions
-import com.mongodb.MongoClientURI
-import com.mongodb.ServerAddress
-import entity.Items
-import org.bson.codecs.configuration.CodecRegistries.fromProviders
-import org.bson.codecs.configuration.CodecRegistries.fromRegistries
-import org.bson.codecs.pojo.PojoCodecProvider
+import database.mongodb.DataStore
+import entity.SuperItem
+import entity.Variation
+import org.bson.types.ObjectId
+import org.mongodb.morphia.Key
 
 object ItemRepository {
 
-    private val pojoCodecRegistry = fromRegistries(MongoClient.getDefaultCodecRegistry(),
-            fromProviders(PojoCodecProvider.builder().automatic(true).build()))
-    private val options = MongoClientOptions.builder().codecRegistry(pojoCodecRegistry).build()
-    private val client  = MongoClient(ServerAddress("localhost", 27017), options)
+    private val dataStore = DataStore.get()
 
-    private val db = client.getDatabase("local")
+    fun count() = dataStore.getCount(SuperItem::class.java)
 
-    fun count(): Int = db.getCollection("items", Items::class.java).find().toList().count()
+    fun findAll(): List<SuperItem> = dataStore.createQuery(SuperItem::class.java).asList()
+
+    fun insert(): Int {
+        val key: Key<SuperItem> = dataStore.save(
+                SuperItem(ObjectId().toHexString(), "name" + System.currentTimeMillis().toString(), 3, true, listOf(Variation(2, "id")))
+        )
+        // DEBUG
+        println(key)
+        return 1
+    }
 }
