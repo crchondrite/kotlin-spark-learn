@@ -13,7 +13,9 @@ fun main(args: Array<String>) {
 
     path("/items") {
         get("/count", ItemController.count())
-        get("/all", ItemController.all(), JsonTransformer)
-        get("/new", ItemController.new())
+        get("/all",   ItemController.all(), JsonTransformer)
+        get("/new",   ItemController.new())
+        get("/find_by_value",  ItemController.findByValue(), JsonTransformer)
+        get("/find_by_name",  ItemController.findByName(), JsonTransformer)
     }
 }

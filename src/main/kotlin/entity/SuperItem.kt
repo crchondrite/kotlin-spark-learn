@@ -1,7 +1,9 @@
 package entity
 
 import org.mongodb.morphia.annotations.Entity
+import org.mongodb.morphia.annotations.Field
 import org.mongodb.morphia.annotations.Id
+import org.mongodb.morphia.annotations.Property
 
 @Entity("super_items")
 data class SuperItem(
@@ -10,6 +12,7 @@ data class SuperItem(
 
         val name: String,
 
+        @Property("good_value")
         val goodValue: Int,
 
         val enabled: Boolean,
