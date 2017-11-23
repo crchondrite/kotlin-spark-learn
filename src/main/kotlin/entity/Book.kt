@@ -10,3 +10,11 @@ data class Book(
     @Json(name = "author-description")
     val author: Author
 )
+
+data class Author(
+        @Json(name = "id")
+        val authorId:String,
+
+        @Json(name = "name")
+        val authorName:String
+)
