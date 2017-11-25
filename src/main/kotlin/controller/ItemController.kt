@@ -1,29 +1,28 @@
 package controller
 
-import entity.SuperItem
-import repository.ItemRepository
+import repository.SuperItemRepository
 import spark.Route
 
 object ItemController {
     fun count() = Route { _, _ ->
-        ItemRepository.count()
+        SuperItemRepository.count()
     }
 
     fun all() = Route { _, _ ->
-        ItemRepository.findAll()
+        SuperItemRepository.findAll()
     }
 
     fun new() = Route { _, _ ->
-        ItemRepository.insert()
+        SuperItemRepository.insert()
     }
 
     fun findByValue() = Route { _, _ ->
-        val data = ItemRepository.findByValue()
+        val data = SuperItemRepository.findByValue()
         data ?: "{data: \"null\"}"
     }
 
     fun findByName() = Route { _, _ ->
-        val data = ItemRepository.findByName()
+        val data = SuperItemRepository.findByName()
         data ?: "{data: \"null\"}"
     }
 }

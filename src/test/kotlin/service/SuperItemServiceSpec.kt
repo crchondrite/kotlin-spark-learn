@@ -1,0 +1,43 @@
+package service
+
+import entity.SuperItem
+import org.jetbrains.spek.api.Spek
+import org.jetbrains.spek.api.dsl.describe
+import org.jetbrains.spek.api.dsl.it
+import org.jetbrains.spek.api.dsl.on
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.mock
+import kotlin.reflect.KProperty1
+import kotlin.reflect.full.declaredMemberProperties
+import kotlin.reflect.full.memberProperties
+import kotlin.reflect.jvm.isAccessible
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
+
+object SuperItemServiceSpec : Spek({
+    describe("SuperItemService Testing...") {
+        on("test mock") {
+            it("this method should return 1") {
+                assertEquals(1, SuperItemService.shouldReturnOne())
+            }
+            it("should return 2, just because create mock object and stubbing a public method must return 2") {
+                val service = mock(SuperItemService::class.java)
+                `when`(service.shouldReturnOne()).thenReturn(2)
+                assertEquals(2, service.shouldReturnOne())
+            }
+            it("access private property via reflection. this property should return 1") {
+                val jClass = SuperItemService::class.java
+                val publicField = jClass.getDeclaredField("publicProperty")
+                publicField.isAccessible = true
+                println(publicField.name + publicField.get(SuperItemService))
+
+
+                val privateField = jClass.getDeclaredField("privateProperty")
+                privateField.isAccessible = true
+                println(privateField.name + privateField.get(SuperItemService))
+                assertTrue(true)
+            }
+        }
+    }
+
+})

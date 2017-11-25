@@ -6,7 +6,7 @@ import entity.Variation
 import org.bson.types.ObjectId
 import org.mongodb.morphia.Key
 
-object ItemRepository {
+object SuperItemRepository {
 
     private val dataStore = DataStore.get()
 
