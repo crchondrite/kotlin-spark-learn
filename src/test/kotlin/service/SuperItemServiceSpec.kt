@@ -1,20 +1,14 @@
 package service
 
-import entity.SuperItem
-import net.bytebuddy.implementation.bind.annotation.Super
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.describe
 import org.jetbrains.spek.api.dsl.it
 import org.jetbrains.spek.api.dsl.on
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
-import kotlin.reflect.KProperty1
-import kotlin.reflect.full.declaredMemberExtensionProperties
-import kotlin.reflect.full.declaredMemberProperties
 import kotlin.reflect.full.memberProperties
 import kotlin.reflect.jvm.isAccessible
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
+import kotlin.test.*
 
 object SuperItemServiceSpec : Spek({
     describe("SuperItemService Testing...") {
@@ -63,6 +57,18 @@ object SuperItemServiceSpec : Spek({
 
                 println(model.TestDataClass::name.get(model.TestDataClass(2, "buzz")))
                 assertTrue(true)
+            }
+
+            it("cannot access private property in kotlin object via kotlin reflection") {
+                val kClass = SuperItemService::class
+
+                // SuperItemService has private property
+                assertFailsWith(IllegalArgumentException::class) {
+                    kClass.memberProperties.forEach {
+                        it.isAccessible = true
+                        println(it.name + it.get(SuperItemService))
+                    }
+                }
             }
         }
     }
