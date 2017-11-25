@@ -1,6 +1,7 @@
 package service
 
 import entity.SuperItem
+import net.bytebuddy.implementation.bind.annotation.Super
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.describe
 import org.jetbrains.spek.api.dsl.it
@@ -8,6 +9,7 @@ import org.jetbrains.spek.api.dsl.on
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
 import kotlin.reflect.KProperty1
+import kotlin.reflect.full.declaredMemberExtensionProperties
 import kotlin.reflect.full.declaredMemberProperties
 import kotlin.reflect.full.memberProperties
 import kotlin.reflect.jvm.isAccessible
@@ -25,16 +27,41 @@ object SuperItemServiceSpec : Spek({
                 `when`(service.shouldReturnOne()).thenReturn(2)
                 assertEquals(2, service.shouldReturnOne())
             }
-            it("access private property via reflection. this property should return 1") {
+            it("access public and private property declare kotlin object via java reflection") {
+                // FIXME Kotlin reflection cannot access to private property in object
                 val jClass = SuperItemService::class.java
                 val publicField = jClass.getDeclaredField("publicProperty")
                 publicField.isAccessible = true
-                println(publicField.name + publicField.get(SuperItemService))
+                println(publicField.name + " + " + publicField.get(SuperItemService))
 
 
                 val privateField = jClass.getDeclaredField("privateProperty")
                 privateField.isAccessible = true
-                println(privateField.name + privateField.get(SuperItemService))
+                println(privateField.name + " + " + privateField.get(SuperItemService))
+                assertTrue(true)
+            }
+
+            it("access public and private property declare kotlin class via kotlin reflection") {
+                val kClass = model.TestClass::class
+
+                kClass.memberProperties.forEach {
+                    it.isAccessible = true
+                    println(it.name + " + " + it.get(model.TestClass(1, "name")))
+                }
+
+                println(model.TestClass::name.get(model.TestClass(2, "fizz")))
+                assertTrue(true)
+            }
+
+            it("access public and private property declare kotlin data class via kotlin reflection") {
+                val kClass = model.TestDataClass::class
+
+                kClass.memberProperties.forEach {
+                    it.isAccessible = true
+                    println(it.name + it.get(model.TestDataClass(1, "name")))
+                }
+
+                println(model.TestDataClass::name.get(model.TestDataClass(2, "buzz")))
                 assertTrue(true)
             }
         }
