@@ -2,6 +2,8 @@ package service
 
 import entity.SuperItem
 import entity.Variation
+import model.SampleClass
+import model.SampleDataClass
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.describe
 import org.jetbrains.spek.api.dsl.it
@@ -28,26 +30,26 @@ object SuperItemServiceSpec : Spek({
                 assertTrue(true)
             }
             it("can access public and private property declare kotlin class via kotlin reflection") {
-                val kClass = model.TestClass::class
+                val kClass = SampleClass::class
 
                 kClass.memberProperties.forEach {
                     it.isAccessible = true
-                    println(it.name + " : " + it.get(model.TestClass(1, "name")))
+                    println(it.name + " : " + it.get(SampleClass(1, "name")))
                 }
 
-                println(model.TestClass::name.get(model.TestClass(2, "fizz")))
+                println(SampleClass::name.get(SampleClass(2, "fizz")))
                 assertTrue(true)
             }
 
             it("can access public and private property declare kotlin data class via kotlin reflection") {
-                val kClass = model.TestDataClass::class
+                val kClass = SampleDataClass::class
 
                 kClass.memberProperties.forEach {
                     it.isAccessible = true
-                    println(it.name + " : " + it.get(model.TestDataClass(1, "name")))
+                    println(it.name + " : " + it.get(SampleDataClass(1, "name")))
                 }
 
-                println(model.TestDataClass::name.get(model.TestDataClass(2, "buzz")))
+                println(SampleDataClass::name.get(SampleDataClass(2, "buzz")))
                 assertTrue(true)
             }
 
