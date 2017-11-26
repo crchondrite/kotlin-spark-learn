@@ -13,6 +13,7 @@ import kotlin.reflect.jvm.isAccessible
 import kotlin.test.*
 
 object SuperItemServiceSpec : Spek({
+    // TODO GABAGABA ENGLISH
     describe("SuperItemService Testing...") {
         on("access property") {
             it("access public and private property declare kotlin object via java reflection") {
@@ -98,7 +99,6 @@ object SuperItemServiceSpec : Spek({
 
             val entity1 = SuperItem("1", "name01", 1, true,
                     listOf(Variation(1, "a"), Variation(2, "b")))
-            // TODO GABAGABA ENGLISH
             it("should return true when the entity has variation, value is given parameter") {
                 val result = method.invoke(SuperItemService, entity1, "a")
 
