@@ -12,12 +12,14 @@ object SuperItemService {
         val all = SuperItemRepository.findAll()
     }
 
+    fun add(a: Int, b: Int) = a + b
+
     fun shouldReturnOne() = 1
 
+    private fun shouldReturnParameter(num: Int) = num
 
-    private fun shouldReturnTwo() = 2
+    private fun matchVariationValue(entity: SuperItem, value: String) =
+        entity.variations.any { it.value == value }
 
-    private fun matchVariationValue(entity: SuperItem): Boolean {
-        return false
-    }
+    private fun matchVariationValue2() = true
 }
