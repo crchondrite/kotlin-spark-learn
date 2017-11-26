@@ -104,7 +104,7 @@ object SuperItemServiceSpec : Spek({
 
                 // safe (nullable) cast
                 val bool: Boolean? = result as? Boolean
-                // println("test start!!" + bool.toString())
+                println("test start!!" + bool.toString())
                 if (bool != null) assertTrue(bool, "get true!!") else assertTrue(false, "result is null")
             }
             it("should return false when the entity has variation, value is not given parameter") {
