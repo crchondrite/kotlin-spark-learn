@@ -5,7 +5,7 @@ import repository.SuperItemRepository
 
 object SuperItemService {
 
-    val publicProperty = 0
+    var publicProperty = 0
     private val privateProperty = 1
 
     fun findByVariationValue(value: String) =
