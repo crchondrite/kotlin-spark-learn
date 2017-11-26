@@ -1,7 +1,6 @@
 package entity
 
 import org.mongodb.morphia.annotations.Entity
-import org.mongodb.morphia.annotations.Field
 import org.mongodb.morphia.annotations.Id
 import org.mongodb.morphia.annotations.Property
 
