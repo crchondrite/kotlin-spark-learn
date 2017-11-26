@@ -16,9 +16,9 @@ import kotlin.test.*
 
 object SuperItemServiceSpec : Spek({
     // TODO GABAGABA ENGLISH
-    describe("SuperItemService Testing...") {
-        on("access property") {
-            it("can access public and private property declare kotlin object via java reflection") {
+    describe("Studying reflection and SuperItemService Testing...") {
+        on("Reflection property") {
+            it("can access public and private property declared kotlin object via java reflection") {
                 val jClass = SuperItemService::class.java
                 val publicField = jClass.getDeclaredField("publicProperty")
                 publicField.isAccessible = true
@@ -29,7 +29,7 @@ object SuperItemServiceSpec : Spek({
                 println(privateField.name + " : " + privateField.get(SuperItemService))
                 assertTrue(true)
             }
-            it("can access public and private property declare kotlin class via kotlin reflection") {
+            it("can access public and private property declared kotlin class via kotlin reflection") {
                 val kClass = SampleClass::class
 
                 kClass.memberProperties.forEach {
@@ -41,7 +41,7 @@ object SuperItemServiceSpec : Spek({
                 assertTrue(true)
             }
 
-            it("can access public and private property declare kotlin data class via kotlin reflection") {
+            it("can access public and private property declared kotlin data class via kotlin reflection") {
                 val kClass = SampleDataClass::class
 
                 kClass.memberProperties.forEach {
@@ -53,7 +53,7 @@ object SuperItemServiceSpec : Spek({
                 assertTrue(true)
             }
 
-            it("cannot access private property in kotlin object via kotlin reflection") {
+            it("cannot access private property declared kotlin object via kotlin reflection") {
                 val kClass = SuperItemService::class
 
                 // SuperItemService has private property
@@ -65,11 +65,11 @@ object SuperItemServiceSpec : Spek({
                 }
             }
         }
-        on("access method") {
-            it("this public method should return 1") {
+        on("Reflection method") {
+            it("should return 1. it is public method") {
                 assertEquals(1, SuperItemService.shouldReturnOne())
             }
-            it("should return parameter value, this public access via java reflection") {
+            it("should return argument, it is public method called via java reflection") {
                 // FIXME kotlin cannot call method via reflection??
                 val jClass = SuperItemService::class.java
                 val method = jClass.getDeclaredMethod("shouldReturnOne")
@@ -77,7 +77,7 @@ object SuperItemServiceSpec : Spek({
 
                 assertEquals(1, method.invoke(SuperItemService))
             }
-            it("should return parameter value, this private method is accessed via java reflection") {
+            it("should return argument, it is private method called via java reflection") {
                 // FIXME kotlin cannot call private method via reflection??
                 // https://github.com/yyYank/kotlin-rev-solution/blob/master/docs/reflection.md
                 val jClass = SuperItemService::class.java
@@ -88,13 +88,15 @@ object SuperItemServiceSpec : Spek({
                 assertEquals(num, method.invoke(SuperItemService, num))
             }
 
+        }
+        on("public method mocking") {
             it("should return 2, just because create mock object and stubbing a public method must return 2") {
                 val service = mock(SuperItemService::class.java)
                 `when`(service.shouldReturnOne()).thenReturn(2)
                 assertEquals(2, service.shouldReturnOne())
             }
         }
-        on("private method test") {
+        on("private method mocking") {
             val jClass = SuperItemService::class.java
             val method = jClass.getDeclaredMethod("matchVariationValue", SuperItem::class.java, String::class.java)
             method.isAccessible = true
