@@ -8,9 +8,8 @@ object SuperItemService {
     val publicProperty = 0
     private val privateProperty = 1
 
-    fun findByVariationValue(value: String) {
-        val all = SuperItemRepository.findAll()
-    }
+    fun findByVariationValue(value: String) =
+            SuperItemRepository.findAll().filter { matchVariationValue(it, value) }
 
     fun add(a: Int, b: Int) = a + b
 
