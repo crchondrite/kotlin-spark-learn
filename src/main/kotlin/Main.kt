@@ -1,8 +1,10 @@
 import controller.BookController
 import controller.ItemController
 import controller.JsonTransformer
+import scheduler.CollectionUpdateObserverTask
 import spark.Spark.get
 import spark.Spark.path
+import kotlin.concurrent.timer
 
 fun main(args: Array<String>) {
     path("/books") {
@@ -18,4 +20,12 @@ fun main(args: Array<String>) {
         get("/find_by_value",  ItemController.findByValue(), JsonTransformer)
         get("/find_by_name",  ItemController.findByName(), JsonTransformer)
     }
+
+    // scheduler
+    timer("simple scheduler", true, initialDelay = 1000L, period = 100L) {
+        CollectionUpdateObserverTask.task()
+    }
+
+    // simple synchronized thread
+    // SimpleSynchronizedThread.run()
 }
