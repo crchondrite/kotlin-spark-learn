@@ -16,7 +16,7 @@ object SuperItemServiceSpec : Spek({
     // TODO GABAGABA ENGLISH
     describe("SuperItemService Testing...") {
         on("access property") {
-            it("access public and private property declare kotlin object via java reflection") {
+            it("can access public and private property declare kotlin object via java reflection") {
                 val jClass = SuperItemService::class.java
                 val publicField = jClass.getDeclaredField("publicProperty")
                 publicField.isAccessible = true
@@ -27,7 +27,7 @@ object SuperItemServiceSpec : Spek({
                 println(privateField.name + " : " + privateField.get(SuperItemService))
                 assertTrue(true)
             }
-            it("access public and private property declare kotlin class via kotlin reflection") {
+            it("can access public and private property declare kotlin class via kotlin reflection") {
                 val kClass = model.TestClass::class
 
                 kClass.memberProperties.forEach {
@@ -39,7 +39,7 @@ object SuperItemServiceSpec : Spek({
                 assertTrue(true)
             }
 
-            it("access public and private property declare kotlin data class via kotlin reflection") {
+            it("can access public and private property declare kotlin data class via kotlin reflection") {
                 val kClass = model.TestDataClass::class
 
                 kClass.memberProperties.forEach {
@@ -67,7 +67,7 @@ object SuperItemServiceSpec : Spek({
             it("this public method should return 1") {
                 assertEquals(1, SuperItemService.shouldReturnOne())
             }
-            it("this public method should return parameter value access via java reflection") {
+            it("should return parameter value, this public access via java reflection") {
                 // FIXME kotlin cannot call method via reflection??
                 val jClass = SuperItemService::class.java
                 val method = jClass.getDeclaredMethod("shouldReturnOne")
@@ -75,7 +75,7 @@ object SuperItemServiceSpec : Spek({
 
                 assertEquals(1, method.invoke(SuperItemService))
             }
-            it("this private method should return parameter value access via java reflection") {
+            it("should return parameter value, this private method is accessed via java reflection") {
                 // FIXME kotlin cannot call private method via reflection??
                 // https://github.com/yyYank/kotlin-rev-solution/blob/master/docs/reflection.md
                 val jClass = SuperItemService::class.java
@@ -86,7 +86,7 @@ object SuperItemServiceSpec : Spek({
                 assertEquals(num, method.invoke(SuperItemService, num))
             }
 
-            it("this public method should return 2, just because create mock object and stubbing a public method must return 2") {
+            it("should return 2, just because create mock object and stubbing a public method must return 2") {
                 val service = mock(SuperItemService::class.java)
                 `when`(service.shouldReturnOne()).thenReturn(2)
                 assertEquals(2, service.shouldReturnOne())
