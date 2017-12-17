@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/crchondrite/kotlin-spark-learn#readme",
   "dependencies": {
+    "bulma": "^0.6.1",
     "jquery": "^3.2.1"
   },
   "devDependencies": {
