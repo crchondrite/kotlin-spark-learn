@@ -1,0 +1,29 @@
+{
+  "name": "kotlin-spark-learn",
+  "version": "1.0.0",
+  "description": "my sandbox for kotlin spark",
+  "main": "index.js",
+  "scripts": {
+    "webpack": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crchondrite/kotlin-spark-learn.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/crchondrite/kotlin-spark-learn/issues"
+  },
+  "homepage": "https://github.com/crchondrite/kotlin-spark-learn#readme",
+  "dependencies": {
+    "jquery": "^3.2.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "webpack": "^3.10.0"
+  }
+}
