@@ -43,6 +43,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
     compile "com.sparkjava:spark-core:$spark_version"
+    compile "com.sparkjava:spark-template-thymeleaf:$spark_version"
     compile 'org.slf4j:slf4j-simple:+'
     compile "com.squareup.moshi:moshi:$moshi_version"
     compile "com.squareup.moshi:moshi-kotlin:$moshi_version"
