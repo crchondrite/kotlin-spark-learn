@@ -3,7 +3,7 @@ package controller
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver
 import spark.template.thymeleaf.ThymeleafTemplateEngine
 
-object MytemplateEngine {
+object MyTemplateEngine {
 
     private val resolver = ClassLoaderTemplateResolver().apply {
         suffix = ".html"
