@@ -67,18 +67,39 @@
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+__webpack_require__(1);
+module.exports = __webpack_require__(4);
 
-
-var $ = __webpack_require__(1);
-$(function () {
-    var myAlert = function myAlert() {
-        console.log("alert");
-    };
-});
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _bulma = __webpack_require__(2);
+
+var _bulma2 = _interopRequireDefault(_bulma);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var $ = __webpack_require__(3);
+
+$(function () {
+  var myAlert = function myAlert() {
+    console.log("alert");
+  };
+});
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10336,6 +10357,21 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(5);
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
