@@ -1,3 +1,4 @@
+const webpack = require("webpack");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const app = {
@@ -7,7 +8,7 @@ const app = {
   ],
   output: {
     path: __dirname + '/src/main/resources/static/dist',
-    filename: './js/bundle.js'
+    filename: './js/bundle.min.js'
   },
   module: {
     rules: [
@@ -32,6 +33,7 @@ const app = {
     ]
   },
   plugins: [
+    new webpack.optimize.UglifyJsPlugin(),
     new ExtractTextPlugin('css/bulma.min.css')
   ]
 };

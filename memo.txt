@@ -1,7 +1,0 @@
-ccontextck npm-scripts
-
-npm init // default
-npm install jquery --save
-npm install --save-dev babel-loader babel-polyfill babel-preset-env babel-core
-
-npm run webpack
