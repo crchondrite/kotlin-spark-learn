@@ -2,7 +2,7 @@ group 'learn.kotlin'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.1.61'
+    ext.kotlin_version = '1.2.10'
     ext.spark_version  = '2.7.1'
     ext.junit_gradle_plugin_version = '1.0.0'
     ext.spek_version = '1.1.5'
@@ -46,7 +46,6 @@ dependencies {
     compile 'org.slf4j:slf4j-simple:+'
     compile "com.squareup.moshi:moshi:$moshi_version"
     compile "com.squareup.moshi:moshi-kotlin:$moshi_version"
-    compile "com.github.ben-manes.caffeine:caffeine:$caffeine_version"
     compile "org.mongodb:mongodb-driver:$mongodb_driver_version"
     compile "org.mongodb.morphia:morphia:$morphia_version"
     testCompile "org.jetbrains.spek:spek-api:$spek_version"
@@ -54,8 +53,6 @@ dependencies {
     testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
     testCompile "org.mockito:mockito-core:2.+"
     testRuntime "org.jetbrains.spek:spek-junit-platform-engine:$spek_version"
-
-    // testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
 compileKotlin {

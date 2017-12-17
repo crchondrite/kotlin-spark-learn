@@ -1,20 +1,17 @@
 package entity
 
-import com.squareup.moshi.Json
+import org.bson.types.ObjectId
+import org.mongodb.morphia.annotations.Entity
+import org.mongodb.morphia.annotations.Id
 
+@Entity("books")
 data class Book(
-    val isbn:String,
-    val title:String,
-    val price:Int,
-
-    @Json(name = "author-description")
-    val author: Author
-)
-
-data class Author(
-        @Json(name = "id")
-        val authorId:String,
-
-        @Json(name = "name")
-        val authorName:String
+    @Id
+    val id: ObjectId = ObjectId(),
+    val title: String = "",
+    val isbn: String = "",
+    val price: Int = 0,
+    val publisher: String = "",
+    val authors: List<String> = listOf(),
+    val description: String = ""
 )

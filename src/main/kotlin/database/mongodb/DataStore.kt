@@ -10,17 +10,15 @@ import org.mongodb.morphia.Datastore
 import org.mongodb.morphia.Morphia
 
 object DataStore {
-    private val dataStore: Datastore
+    val DB: Datastore
 
     init {
         val pojoCodecRegistry = fromRegistries(MongoClient.getDefaultCodecRegistry(),
-                fromProviders(PojoCodecProvider.builder().automatic(true).build()))
+            fromProviders(PojoCodecProvider.builder().automatic(true).build()))
         val options = MongoClientOptions.builder().codecRegistry(pojoCodecRegistry).build()
-        val client  = MongoClient(ServerAddress("localhost", 27017), options)
+        val client = MongoClient(ServerAddress("localhost", 27017), options)
 
         val morphia = Morphia().mapPackage("entity")
-        dataStore = morphia.createDatastore(client,"local")
+        DB = morphia.createDatastore(client, "local")
     }
-
-    fun get() = dataStore
 }
